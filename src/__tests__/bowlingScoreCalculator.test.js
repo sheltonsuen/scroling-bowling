@@ -119,3 +119,15 @@ test('given 1st round 1st ball 1 ball down and 2nd ball no ball down, and rest n
 
     expect(totalScore).toBe(1)
 });
+
+test('given 1st round 1st ball 1 ball down and 2nd ball 2 ball down, and rest no balls down when calculate total score then return 3 scores', () => {
+    const scoreBoard = [{
+        label: '',
+        firstBallDown: 1,
+        secondBallDown: 2
+    }];
+
+    const totalScore = calculateTotalScore(scoreBoard);
+
+    expect(totalScore).toBe(3)
+});
