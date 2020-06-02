@@ -1,3 +1,6 @@
+const LABEL_STRIKE = 'X';
+const LABEL_SPARE = '/';
+
 export const calculateTotalScore = (scoreBoard) =>
     scoreBoard
         .map((record, index) => {
@@ -14,10 +17,10 @@ export const calculateTotalScore = (scoreBoard) =>
 
 const calculateCurrentRoundScore = (currentRound) => {
     switch (currentRound.label) {
-        case 'X': {
+        case LABEL_STRIKE: {
             return 10;
         }
-        case '/': {
+        case LABEL_SPARE: {
             return currentRound.firstBallDown + 10;
         }
         default: {
@@ -28,10 +31,10 @@ const calculateCurrentRoundScore = (currentRound) => {
 
 const calculateCurrentRoundBonus = (currentRound, index, scoreBoard) => {
     switch (currentRound.label) {
-        case 'X': {
+        case LABEL_STRIKE: {
             return findNextFirstBallDown(index, scoreBoard) + findNextSecondBallDown(index, scoreBoard);
         }
-        case '/': {
+        case LABEL_SPARE: {
             return findNextFirstBallDown(index, scoreBoard);
         }
         default: {
@@ -43,7 +46,7 @@ const calculateCurrentRoundBonus = (currentRound, index, scoreBoard) => {
 const findNextFirstBallDown = (index, scoreBoard) => {
     if (index === 9) {
         const currentRound = scoreBoard[index];
-        return currentRound.label === 'X' ? currentRound.secondBallDown : currentRound.thirdBallDown;
+        return currentRound.label === LABEL_STRIKE ? currentRound.secondBallDown : currentRound.thirdBallDown;
     }
 
     const nextRound = scoreBoard[index + 1];
@@ -60,11 +63,11 @@ const findNextSecondBallDown = (index, scoreBoard) => {
         return 0;
     }
 
-    if (nextRound.label === 'X' && index === 8) {
+    if (nextRound.label === LABEL_STRIKE && index === 8) {
         return scoreBoard[index + 1].secondBallDown;
     }
 
-    if (nextRound.label === 'X') {
+    if (nextRound.label === LABEL_STRIKE) {
         const thirdRound = scoreBoard[index + 2];
         return nextRound.firstBallDown + thirdRound.firstBallDown;
     }
