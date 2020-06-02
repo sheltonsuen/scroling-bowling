@@ -1,6 +1,8 @@
 const LABEL_STRIKE = 'X';
 const LABEL_SPARE = '/';
 
+const ROUND_FULL_SCORE = 10;
+
 export const calculateTotalScore = (scoreBoard) =>
     scoreBoard
         .map((record, index) => {
@@ -17,11 +19,9 @@ export const calculateTotalScore = (scoreBoard) =>
 
 const calculateCurrentRoundScore = (currentRound) => {
     switch (currentRound.label) {
-        case LABEL_STRIKE: {
-            return 10;
-        }
+        case LABEL_STRIKE:
         case LABEL_SPARE: {
-            return currentRound.firstBallDown + 10;
+            return ROUND_FULL_SCORE;
         }
         default: {
             return currentRound.firstBallDown + currentRound.secondBallDown;
