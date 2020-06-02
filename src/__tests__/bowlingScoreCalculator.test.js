@@ -179,3 +179,17 @@ test('given 10th round X with following 1st ball 1 balls down and 2nd ball 2 bal
 
     expect(totalScore).toBe(13)
 });
+
+test('given 10th round / with following 1st ball no ball down, current 1st ball and rest no balls down when calculate total score then return 10 scores', () => {
+    const scoreBoard = [, , , , , , , , , {
+        label: '/',
+        firstBallDown: 0,
+        secondBallDown: 10,
+        thirdBallDown: 0
+    }];
+
+    const totalScore = calculateTotalScore(scoreBoard);
+
+    expect(totalScore).toBe(10)
+});
+

@@ -42,7 +42,8 @@ const calculateCurrentRoundBonus = (currentRound, index, scoreBoard) => {
 
 const findNextFirstBallDown = (index, scoreBoard) => {
     if (index === 9) {
-        return scoreBoard[index].secondBallDown;
+        const currentRound = scoreBoard[index];
+        return currentRound.label === 'X' ? currentRound.secondBallDown : currentRound.thirdBallDown;
     }
 
     const nextRound = scoreBoard[index + 1];
@@ -68,5 +69,5 @@ const findNextSecondBallDown = (index, scoreBoard) => {
         return nextRound.firstBallDown + thirdRound.firstBallDown;
     }
 
-    return nextRound ? nextRound.secondBallDown: 0;
+    return nextRound ? nextRound.secondBallDown : 0;
 };
