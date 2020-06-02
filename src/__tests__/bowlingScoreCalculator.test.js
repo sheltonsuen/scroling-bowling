@@ -30,7 +30,6 @@ test('given 1st round X with following 1st ball no balls down and 2nd ball 1 bal
     expect(totalScore).toBe(12)
 });
 
-
 test('given 1st round X with following 1st ball 2 ball down and 2nd ball no ball down, rest no balls down when calculate total score then return 14 scores', () => {
     const scoreBoard = [{
         label: 'X',
@@ -45,7 +44,6 @@ test('given 1st round X with following 1st ball 2 ball down and 2nd ball no ball
 
     expect(totalScore).toBe(14)
 });
-
 
 test('given 1st round X with following 1st ball 1 balls down and 2nd ball 2 balls down, rest no balls down when calculate total score then return 16 scores', () => {
     const scoreBoard = [{
@@ -62,7 +60,6 @@ test('given 1st round X with following 1st ball 1 balls down and 2nd ball 2 ball
     expect(totalScore).toBe(16)
 });
 
-
 test('given 1st round / with following 1st ball no ball down, current 1st ball and rest no balls down when calculate total score then return 10 scores', () => {
     const scoreBoard = [{
         label: '/',
@@ -78,7 +75,6 @@ test('given 1st round / with following 1st ball no ball down, current 1st ball a
 
     expect(totalScore).toBe(10)
 });
-
 
 test('given 1st round / with following 1st ball 2 balls down, current 1st ball and rest no balls down when calculate total score then return 14 scores', () => {
     const scoreBoard = [{
