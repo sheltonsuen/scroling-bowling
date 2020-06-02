@@ -27,24 +27,46 @@ const calculateCurrentRoundScore = (currentRound) => {
 };
 
 const calculateCurrentRoundBonus = (currentRound, index, scoreBoard) => {
-    const nextRound = scoreBoard[index + 1];
-    if (!nextRound) {
-        return 0;
-    }
-
     switch (currentRound.label) {
         case 'X': {
-            if (nextRound.label === 'X') {
-                return 10 + scoreBoard[index + 2] ? scoreBoard[index + 2].firstBallDown || 0 : 0;
-            }
-
-            return calculateCurrentRoundScore(nextRound);
+            return findNextFirstBallDown(index, scoreBoard) + findNextSecondBallDown(index, scoreBoard);
         }
         case '/': {
-            return nextRound.firstBallDown;
+            return findNextFirstBallDown(index, scoreBoard);
         }
         default: {
             return 0;
         }
     }
+};
+
+const findNextFirstBallDown = (index, scoreBoard) => {
+    if (index === 9) {
+        return scoreBoard[index].secondBallDown;
+    }
+
+    const nextRound = scoreBoard[index + 1];
+    return nextRound ? nextRound.firstBallDown : 0;
+};
+
+const findNextSecondBallDown = (index, scoreBoard) => {
+    if (index === 9) {
+        return scoreBoard[index].thirdBallDown;
+    }
+
+    const nextRound = scoreBoard[index + 1];
+    if (!nextRound) {
+        return 0;
+    }
+
+    if (nextRound.label === 'X' && index === 8) {
+        return scoreBoard[index + 1].secondBallDown;
+    }
+
+    if (nextRound.label === 'X') {
+        const thirdRound = scoreBoard[index + 2];
+        return nextRound.firstBallDown + thirdRound.firstBallDown;
+    }
+
+    return nextRound ? nextRound.secondBallDown: 0;
 };
