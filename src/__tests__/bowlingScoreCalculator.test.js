@@ -166,3 +166,16 @@ test('given 10th round X with following 1st ball 2 ball down and 2nd ball no bal
 
     expect(totalScore).toBe(12)
 });
+
+test('given 10th round X with following 1st ball 1 balls down and 2nd ball 2 balls down, and previous no balls down when calculate total score then return 13 scores', () => {
+    const scoreBoard = [, , , , , , , , , {
+        label: 'X',
+        firstBallDown: 10,
+        secondBallDown: 1,
+        thirdBallDown: 2
+    }];
+
+    const totalScore = calculateTotalScore(scoreBoard);
+
+    expect(totalScore).toBe(13)
+});
