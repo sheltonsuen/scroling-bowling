@@ -6,5 +6,8 @@ export const calculateTotalScore = (scoreBoard) => {
         case '/': {
             return scoreBoard[0].firstBallDown + scoreBoard[0].secondBallDown + scoreBoard[1].firstBallDown + (scoreBoard[1].firstBallDown + scoreBoard[1].secondBallDown)
         }
+        default: {
+            return scoreBoard[0].firstBallDown + scoreBoard[0].secondBallDown
+        }
     }
 };
